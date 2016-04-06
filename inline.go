@@ -9,7 +9,7 @@ import (
 var (
 	ImutableElementError = fmt.Errorf("this element is imutable")
 
-	linkReg = regexp.MustCompile(`\[(IMG: *)?(.*?)\]\((.*?)\)`)
+	linkReg = regexp.MustCompile(`\[(IMG:)? *(.*?)\]\((.*?)\)`)
 )
 
 type Line struct {
@@ -66,7 +66,7 @@ func (self *Line) parseStr(s string) error {
 		st := i
 		c := 0
 		i += 2
-		for ; i < len(s)-2; i++ {
+		for ; i < len(s); i++ {
 			if strings.HasPrefix(s[i:], start) {
 				c++
 			} else if strings.HasPrefix(s[i:], end) {
@@ -94,7 +94,7 @@ func (self *Line) parseStr(s string) error {
 func (self *Line) Feed(s string) error {
 	parseLink := func(s string) {
 		m := linkReg.FindStringSubmatch(s)
-		if m[1] != "" {
+		if m[1] == "" {
 			self.append(NewLink(m[2], m[3]))
 		} else {
 			self.append(NewImageLink(m[2], m[3]))
@@ -174,19 +174,36 @@ func (self *Keyword) HTML(level int) string {
 }
 
 type Code struct {
-	*Line
+	*ElementBase
+
+	content string
 }
 
 func NewCode() *Code {
-	return &Code{NewLine()}
+	return &Code{
+		NewElementBase(),
+		"",
+	}
+}
+
+func (self *Code) Feed(s string) error {
+	self.content += s
+	return nil
+}
+
+func (self *Code) append(elm Element) {
+}
+
+func (self *Code) Children() []Element {
+	return nil
 }
 
 func (self *Code) String() string {
-	return "{{" + strings.Join(self.StringList(), "") + "}}"
+	return "{{" + self.content + "}}"
 }
 
 func (self *Code) HTML(level int) string {
-	return "<code>" + strings.Join(self.HTMLList(level), "") + "</code>"
+	return "<code>" + self.content + "</code>"
 }
 
 type Link struct {
