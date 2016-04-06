@@ -5,7 +5,7 @@ The [funyu markup language](https://bitbucket.org/MacRat/funyu) parser written b
 
 ## Installation
 ``` bash
-$ go get https://github.com/macrat/go-funyu.git
+$ go get github.com/macrat/go-funyu
 ```
 
 ## Usage
