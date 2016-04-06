@@ -76,7 +76,7 @@ func (self *BlockElementBase) Feed(s string) error {
 		}
 	} else if len(s) > 0 {
 		return self.children[len(self.children)-1].Feed(s[1:])
-	} else if len(self.children) > 0 {
+	} else if self.mode != modeInitial {
 		return self.children[len(self.children)-1].Feed(s)
 	}
 
@@ -188,7 +188,7 @@ func (self *CodeBlock) String() string {
 }
 
 func (self *CodeBlock) HTML(level int) string {
-	return "<pre class=\"code\" data-language=" + self.lang + ">" + strings.Join(self.StringList(), "\n") + "</pre>\n"
+	return "<pre class=\"code\" data-language=" + self.lang + ">" + strings.Replace(strings.Replace(strings.Join(self.StringList(), "\n"), "<", "&lt;", -1), ">", "&gt;", -1) + "</pre>\n"
 }
 
 type EmbeddedHTML struct {
