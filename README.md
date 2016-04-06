@@ -20,10 +20,12 @@ import (
 )
 
 func main() {
-	fmt.Println(funyu.Parse(`
+	metadata, document, err := funyu.Parse(`
 title: test
 
-this is test of [[funyu]].`).HTML())
+this is test of [[funyu]].`)
+
+	fmt.Println(document)
 }
 ```
 

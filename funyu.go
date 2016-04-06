@@ -6,15 +6,23 @@ import (
 	"io"
 )
 
-func Parse(r io.Reader) (*Funyu, error) {
+func Parse(r io.Reader) (Metadata, *Funyu, error) {
 	funyu := NewFunyu()
+	md := NewMetadata()
 	scanner := bufio.NewScanner(r)
 	for scanner.Scan() {
-		if err := funyu.Feed(scanner.Text()); err != nil {
-			return nil, err
+		if err := md.Feed(scanner.Text()); err == EndOfMetadata {
+			break
+		} else {
+			return nil, nil, err
 		}
 	}
-	return funyu, nil
+	for scanner.Scan() {
+		if err := funyu.Feed(scanner.Text()); err != nil {
+			return nil, nil, err
+		}
+	}
+	return md, funyu, nil
 }
 
 type Element interface {
