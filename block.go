@@ -181,7 +181,7 @@ func NewCodeBlock(lang string) *CodeBlock {
 
 func (self *CodeBlock) String() string {
 	if len(self.children) > 0 {
-		return strings.TrimRight("``` " + self.lang + "\n\t"+strings.Join(strings.Split(strings.Join(self.StringList(), "\n"), "\n"), "\n\t"), " \t\n") + "\n```\n"
+		return strings.TrimRight("``` "+self.lang+"\n\t"+strings.Join(strings.Split(strings.Join(self.StringList(), "\n"), "\n"), "\n\t"), " \t\n") + "\n```\n"
 	} else {
 		return "```\n```\n"
 	}

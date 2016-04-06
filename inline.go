@@ -2,8 +2,8 @@ package funyu
 
 import (
 	"fmt"
-	"strings"
 	"regexp"
+	"strings"
 )
 
 var (
@@ -42,7 +42,7 @@ func (self *Line) parseStr(s string) error {
 		end := ""
 		var elm ParentElement
 
-		switch s[i:i+2] {
+		switch s[i : i+2] {
 		case "<<":
 			start = "<<"
 			end = ">>"
@@ -71,7 +71,7 @@ func (self *Line) parseStr(s string) error {
 				c++
 			} else if strings.HasPrefix(s[i:], end) {
 				if c == 0 {
-					if e := elm.Feed(s[st+2:i]); e != nil {
+					if e := elm.Feed(s[st+2 : i]); e != nil {
 						return e
 					}
 					if i+2 < len(s) {
@@ -79,7 +79,7 @@ func (self *Line) parseStr(s string) error {
 					}
 					return nil
 				} else {
-					c --
+					c--
 				}
 			}
 		}
@@ -213,7 +213,7 @@ type Link struct {
 }
 
 func NewLink(text, uri string) *Link {
-	return &Link {
+	return &Link{
 		NewElementBase(),
 		text,
 		uri,
