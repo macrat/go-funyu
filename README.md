@@ -42,4 +42,4 @@ this is test of <strong>funyu</strong>.<br>
 Detail about **funyu**, please see [reference of funyu parser for python](https://bitbucket.org/MacRat/funyu/src/tip/REFERENCE.fny).
 
 ## License
-[MIT License](https://opensource.org/licenses/MIT) (c)2016 [MacRat](http://blanktar.jp) <m@crat.jp>
+[MIT License](https://opensource.org/licenses/MIT) (c)2016 [MacRat](http://blanktar.jp) &lt;m@crat.jp&gt;
