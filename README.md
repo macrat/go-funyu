@@ -30,9 +30,11 @@ this is test of [[funyu]].`).HTML())
 This code will do display like below.
 
 ``` HTML
+<article>
 <p>
 this is test of <strong>funyu</strong>.<br>
 </p>
+</article>
 ```
 
 Detail about **funyu**, please see [reference of funyu parser for python](https://bitbucket.org/MacRat/funyu/src/tip/REFERENCE.fny).

@@ -34,22 +34,6 @@ func NewBlockElementBase() *BlockElementBase {
 	}
 }
 
-func (self *BlockElementBase) StringList() []string {
-	s := make([]string, len(self.children))
-	for i, x := range self.Children() {
-		s[i] = x.String()
-	}
-	return s
-}
-
-func (self *BlockElementBase) HTMLList(level int) []string {
-	s := make([]string, len(self.children))
-	for i, x := range self.Children() {
-		s[i] = x.HTML(level + 1)
-	}
-	return s
-}
-
 func (self *BlockElementBase) Feed(s string) error {
 	if self.mode == modeCodeBlock {
 		if strings.HasPrefix(s, "```") {
@@ -99,22 +83,6 @@ func (self *BlockElementBase) Feed(s string) error {
 	return nil
 }
 
-type NoChildElement struct {
-	*ElementBase
-}
-
-func NewNoChildElement() *NoChildElement {
-	return &NoChildElement{NewElementBase()}
-}
-
-func (self *NoChildElement) Feed(s string) error {
-	return ImutableElementError
-}
-
-func (self *NoChildElement) Children() []Element {
-	return nil
-}
-
 type Funyu struct {
 	*BlockElementBase
 }
@@ -128,7 +96,7 @@ func (self *Funyu) String() string {
 }
 
 func (self *Funyu) HTML(level int) string {
-	return "<article>" + strings.Join(self.HTMLList(level), "") + "</article>"
+	return "<article>\n" + strings.Join(self.HTMLList(level), "") + "</article>"
 }
 
 type Section struct {

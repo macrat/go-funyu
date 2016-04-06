@@ -57,3 +57,19 @@ func (self *ParentElementBase) Children() []Element {
 func (self *ParentElementBase) append(elm Element) {
 	self.children = append(self.children, elm)
 }
+
+func (self *ParentElementBase) StringList() []string {
+	s := make([]string, len(self.children))
+	for i, x := range self.Children() {
+		s[i] = x.String()
+	}
+	return s
+}
+
+func (self *ParentElementBase) HTMLList(level int) []string {
+	s := make([]string, len(self.children))
+	for i, x := range self.Children() {
+		s[i] = x.HTML(level + 1)
+	}
+	return s
+}
