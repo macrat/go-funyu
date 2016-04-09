@@ -13,7 +13,7 @@ func Parse(r io.Reader) (Metadata, *Funyu, error) {
 	for scanner.Scan() {
 		if err := md.Feed(scanner.Text()); err == EndOfMetadata {
 			break
-		} else {
+		} else if err != nil {
 			return nil, nil, err
 		}
 	}
