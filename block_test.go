@@ -25,9 +25,11 @@ func TestBlock(t *testing.T) {
 	test(t, s.Feed("\ttest"))
 	test(t, s.Feed("\tabc"))
 	test(t, s.Feed(""))
+	test(t, s.Feed("pre code"))
 	test(t, s.Feed("``` HTML"))
 	test(t, s.Feed("\tthis is <b>html</b>"))
 	test(t, s.Feed("```"))
+	test(t, s.Feed("fuga"))
 	test(t, s.Feed(""))
 	test(t, s.Feed("((("))
 	test(t, s.Feed("\tembedded <em>HTML</em>"))
@@ -59,7 +61,13 @@ test<br>
 abc<br>
 </p>
 </ins>
+<p>
+pre code<br>
+</p>
 <pre class="code" data-language=HTML>this is &lt;b&gt;html&lt;/b&gt;</pre>
+<p>
+fuga<br>
+</p>
 embedded <em>HTML</em>
 </section>
 ` {
@@ -91,7 +99,13 @@ test<br>
 abc<br>
 </p>
 </ins>
+<p>
+pre code<br>
+</p>
 <pre class="code" data-language=HTML>this is &lt;b&gt;html&lt;/b&gt;</pre>
+<p>
+fuga<br>
+</p>
 embedded <em>HTML</em>
 </section>
 ` {
