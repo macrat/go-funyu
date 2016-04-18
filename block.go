@@ -39,7 +39,7 @@ func (self *BlockElementBase) Feed(s string) error {
 		if strings.HasPrefix(s, "```") {
 			self.mode = modeInitial
 			return nil
-		} else if !strings.HasPrefix(s, "\t") {
+		} else if s != "" && !strings.HasPrefix(s, "\t") {
 			return fmt.Errorf("Code Block must be close.")
 		}
 	}
@@ -47,7 +47,7 @@ func (self *BlockElementBase) Feed(s string) error {
 		if strings.HasPrefix(s, ")))") {
 			self.mode = modeInitial
 			return nil
-		} else if !strings.HasPrefix(s, "\t") {
+		} else if s != "" && !strings.HasPrefix(s, "\t") {
 			return fmt.Errorf("Embedded HTML must be close.")
 		}
 	}
