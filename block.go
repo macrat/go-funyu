@@ -64,7 +64,7 @@ func (self *BlockElementBase) Feed(s string) error {
 	} else if s == "(((" {
 		self.mode = modeEmbeddedHTML
 		self.append(NewEmbeddedHTML())
-	} else if self.mode == modeInitial && strings.TrimSpace(s) != "" {
+	} else if strings.TrimSpace(s) != ""  && (self.mode == modeInitial || self.mode != modeParagraph && !strings.HasPrefix(s, "\t")) {
 		self.mode = modeParagraph
 		self.append(NewParagraph())
 		return self.children[len(self.children)-1].Feed(s)
