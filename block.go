@@ -150,7 +150,7 @@ func (self *PostScript) String() string {
 }
 
 func (self *PostScript) HTML(level int) string {
-	return "<ins>\n<span>p.s. <date>" + self.date + "</date></span>\n" + strings.Join(self.HTMLList(level), "") + "</ins>\n"
+	return "<ins>\n<span>p.s. <time>" + self.date + "</time></span>\n" + strings.Join(self.HTMLList(level), "") + "</ins>\n"
 }
 
 type PlainBlock struct {
