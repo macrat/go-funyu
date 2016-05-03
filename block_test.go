@@ -52,7 +52,7 @@ fuga<br>
 <h2>empty</h2>
 </section>
 <ins>
-<b>p.s. <date>2016-01-01</date></b>
+<span>p.s. <date>2016-01-01</date></span>
 <p>
 post script<br>
 </p>
@@ -90,7 +90,7 @@ fuga<br>
 <h4>empty</h4>
 </section>
 <ins>
-<b>p.s. <date>2016-01-01</date></b>
+<span>p.s. <date>2016-01-01</date></span>
 <p>
 post script<br>
 </p>
