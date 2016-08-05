@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/macrat/go-funyu.svg?branch=master)](https://travis-ci.org/macrat/go-funyu)
+
 go-funyu
 ========
 
